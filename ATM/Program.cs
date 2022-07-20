@@ -3,8 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 using ATM.Service;
-using ATM.Hidden;
-using ATM.Person;
+using ATM.Auth;
 
 namespace ATM
 {
@@ -14,17 +13,17 @@ namespace ATM
         {
             ATMFunction atm = new();
 
-            Hidden.Hidden[] pin = new Hidden.Hidden[5];
+            Hidden[] pin = new Hidden[5];
 
             pin[0] = new("1234", 200);
             pin[1] = new("9876", 400);
+                        
+            Auth.Auth[] auth = new Auth.Auth[5];
 
-            Person.Person[] persons = new Person.Person[5];
+            auth[0] = new(1, "John", "test");
+            auth[1] = new(2, "Sarah", "test");
 
-            persons[0] = new(1, "John", "test");
-            persons[1] = new(2, "Sarah", "test");
-
-            Person.Person.CheckUser(pin, atm, persons);
+            Auth.Auth.CheckUser(pin, atm, auth);
         }
     }
 }

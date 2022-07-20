@@ -6,28 +6,28 @@ using System.Threading.Tasks;
 
 using ATM.Service;
 
-namespace ATM.Person
+namespace ATM.Auth
 {
-    internal class Person
+    internal class Auth
     {
         private readonly int id;
-        private readonly string username;
-        private readonly string password;
+        private readonly string firstname;
+        private readonly string lastname;
 
-        public Person(int id, string username, string password)
+        public Auth(int id, string firstname, string lastname)
         {
             this.id = id;
-            this.username = username;
-            this.password = password;
+            this.firstname = firstname;
+            this.lastname = lastname;
         }
 
         public int Id { get { return id; } }
-        public string Username { get { return username; } }
-        public string Password { get { return password; } }
+        public string Username { get { return firstname; } }
+        public string Password { get { return lastname; } }
 
-        public static void CheckUser(Hidden.Hidden[] pin, ATMFunction atm, Person[] persons)
+        public static void CheckUser(Hidden[] pin, ATMFunction atm, Auth[] persons)
         {
-            Console.WriteLine("Write down a number");
+            Console.WriteLine("What is your number a number?");
             string stringIndex = Console.ReadLine();
             int intIndex = int.Parse(stringIndex);
 

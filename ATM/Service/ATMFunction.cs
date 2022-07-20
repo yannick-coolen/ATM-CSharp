@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using ATM.Hidden;
+using ATM.Auth;
 using ATM.Service;
 
 namespace ATM.Service
@@ -13,7 +13,7 @@ namespace ATM.Service
     {
         private byte attempts = 3;
         private bool usingService = false;
-        Hidden.Hidden user;      
+        private Hidden user;      
         readonly Service service = new();
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace ATM.Service
             // Declared variable holds and object with arugment.
             user = new(pin, amount);
 
-            Console.WriteLine("Please enter your PIN, or press q to quit");
+            Console.WriteLine("Please enter your PIN, or press q to quit.");
 
             #region
             while(!usingService)
