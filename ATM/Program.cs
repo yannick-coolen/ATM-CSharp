@@ -13,12 +13,12 @@ namespace ATM
         {
             ATMFunction atm = new();
 
-            Hidden[] pin = new Hidden[5];
+            Hidden[] pin = new Hidden[2];
 
             pin[0] = new("1234", 200);
             pin[1] = new("9876", 400);
                         
-            Auth.Auth[] auth = new Auth.Auth[5];
+            Auth.Auth[] auth = new Auth.Auth[2];
 
             auth[0] = new(1, "John", "test");
             auth[1] = new(2, "Sarah", "test");

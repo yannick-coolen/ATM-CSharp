@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ATM.Service
 {
@@ -44,12 +40,12 @@ namespace ATM.Service
             while (!currentService)
             {
                 try
-                { 
+                {
                     string select = Console.ReadLine();
                     int selectInt = int.Parse(select);
 
                     // Cases of which the user can choose from.
-                    switch (selectInt) 
+                    switch (selectInt)
                     {
                         // This allows the user to withdraw from its bank account.
                         case 1:
@@ -65,7 +61,9 @@ namespace ATM.Service
                                 string amountValue = Console.ReadLine();
                                 int amountInt = int.Parse(amountValue);
                                 budget += amountInt;
-                                Console.WriteLine($"You have deposit {amountInt}. The current amount is {budget} euro.");
+                                Console.WriteLine(
+                                    $"You have deposit {amountInt}. The current amount is {budget} euro.\n");
+                                Receipt(budget, currentService);
                                 currentService = true;
                             }
                             // Catches the error and will give the user feedback why an error has been occurred.
@@ -78,8 +76,7 @@ namespace ATM.Service
                         // Allows the user to check the amount of money the user has at the current point. 
                         case 3:
                             Console.WriteLine(
-                                $"The current amount is:\n" +
-                                $"{budget} euro's.\n" +
+                                $"The current amount is: {budget} euro's.\n\n" +
                                 $"Would you like to proceed?\n" +
                                 $"Write down \"Y\" for yes or \"N\" for no.");
                             // Asks if the user wishes to proceed
@@ -99,7 +96,7 @@ namespace ATM.Service
                     }
                 }
                 // Catch the error and will give the user 
-                catch(Exception) 
+                catch (Exception)
                 {
                     Console.WriteLine("Invalid input. Please enter a number between 1 and 5.");
                     continue;
@@ -117,7 +114,7 @@ namespace ATM.Service
         public void WithdrawAmount(int budget, bool currentService)
         {
             Console.WriteLine("How much would you like to withdraw?");
-            while(!insufficient)
+            while (!insufficient)
             {
                 // Try to run the code snippet as long no errors has been met.
                 try
@@ -133,6 +130,7 @@ namespace ATM.Service
                     }
                     else
                     {
+                        Console.WriteLine($"You have withdrawn {amountInt} euro, and an amount of {budget -= amountInt} euro is left on your bank account.\n");
                         // System will ask the user would like to have a printed receipt
                         Receipt(amountInt, currentService);
                         break;
@@ -201,7 +199,7 @@ namespace ATM.Service
         {
             Console.WriteLine("Would you like to receive a receipt?");
 
-            while(!currentService)
+            while (!currentService)
             {
                 Console.WriteLine("Fill in Y for Yes or N for No:");
                 string printReceipt = Console.ReadLine();
@@ -216,10 +214,10 @@ namespace ATM.Service
                 else
                 {
                     // User has decided to receive a receipt
-                    if (printReceipt == yes || printReceipt == yes.ToLower()) 
+                    if (printReceipt == yes || printReceipt == yes.ToLower())
                     {
                         Console.WriteLine(
-                            $"Receipt has been printed. You have withdrawn {budget} euro's.\n" +
+                            $"Receipt has been printed.\n" +
                             $"\n" +
                             $"Have a nice day.");
                         Console.ReadKey();
