@@ -13,17 +13,33 @@ namespace ATM
         {
             ATMFunction atm = new();
 
-            Hidden[] pin = new Hidden[2];
+            Hidden[] hidden = {
+                new Hidden("1234", 200),
+                new Hidden("9876", 400),
+                new Hidden("4512", 600),
+            };
 
-            pin[0] = new("1234", 200);
-            pin[1] = new("9876", 400);
-                        
-            Auth.Auth[] auth = new Auth.Auth[2];
+            Dictionary<string, Hidden> keyValuePairs = new();
 
-            auth[0] = new(1, "John", "test");
-            auth[1] = new(2, "Sarah", "test");
+            foreach (Hidden hide in keyValuePairs.Values)
+            {
+                keyValuePairs.Add(hide.GetPin().ToString(), hide);
+            }
 
-            Auth.Auth.CheckUser(pin, atm, auth);
+            Auth.Auth[] auths = {
+                new Auth.Auth(1, "John", "test"),
+                new Auth.Auth(2, "Sarah", "test"),
+                new Auth.Auth(3, "Mike", "test"),
+            };
+
+            Dictionary<int, Auth.Auth> authenticate = new();
+
+            foreach (Auth.Auth auth in authenticate.Values)
+            {
+                authenticate.Add(auth.Id, auth);
+            }
+
+            Auth.Auth.CheckUser(hidden, atm, auths);
         }
     }
 }

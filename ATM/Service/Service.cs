@@ -76,7 +76,7 @@ namespace ATM.Service
                         // Allows the user to check the amount of money the user has at the current point. 
                         case 3:
                             Console.WriteLine(
-                                $"The current amount is: {budget} euro's.\n\n" +
+                                $"The current amount is: {budget} euro.\n\n" +
                                 $"Would you like to proceed?\n" +
                                 $"Write down \"Y\" for yes or \"N\" for no.");
                             // Asks if the user wishes to proceed
