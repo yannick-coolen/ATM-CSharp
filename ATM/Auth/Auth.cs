@@ -25,18 +25,40 @@ namespace ATM.Auth
         public string Username { get { return firstname; } }
         public string Password { get { return lastname; } }
 
+        /// <summary>
+        /// Checks if the index is equal as the entered index (which is refference to the use).
+        /// <br /> 
+        /// If True, the process will be redirected to section where the system asks for the user's pin
+        /// </summary>
+        /// <param name="pin"></param>
+        /// <param name="atm"></param>
+        /// <param name="persons"></param>
         public static void CheckUser(Hidden[] pin, ATMFunction atm, Auth[] persons)
         {
             Console.WriteLine("What is your number a number?");
-            string stringIndex = Console.ReadLine();
-            int intIndex = int.Parse(stringIndex);
-
-            for (int i = 0; i < persons.Length; i++)
+            
+            while (true)
             {
-                if (persons[i] == persons[intIndex])
+                string stringIndex = Console.ReadLine();
+                int intIndex = int.Parse(stringIndex);
+                try
                 {
-                    atm.ATMFunc(pin[i].GetPin().ToString(), pin[i].GetAmount());
+                    for (int i = 0; i < persons.Length; i++)
+                    {
+                        if (persons[i] == persons[intIndex])
+                        {
+                            atm.ATMFunc(pin[i].GetPin().ToString(), pin[i].GetAmount());
+                            break;
+                        }
+
+                    }
                     break;
+                }
+
+                catch (Exception)
+                {
+                    Console.WriteLine($"Index value is out of range.\n\nIndex value cannot be higher than {persons.Length - 1}");
+                    continue;
                 }
             }
         }
