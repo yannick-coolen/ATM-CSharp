@@ -50,11 +50,9 @@ namespace ATM.Auth
                             atm.ATMFunc(pin[i].GetPin().ToString(), pin[i].GetAmount());
                             break;
                         }
-
                     }
                     break;
                 }
-
                 catch (Exception)
                 {
                     Console.WriteLine($"Index value is out of range.\n\nIndex value cannot be higher than {persons.Length - 1}");
