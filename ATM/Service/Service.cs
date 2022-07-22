@@ -58,6 +58,7 @@ namespace ATM.Service
                             try
                             {
                                 Deposit(budget, currentService);
+                                currentService = true;
                             }
                             // Catches the error and will give the user feedback why an error has been occurred.
                             catch (Exception)
@@ -171,37 +172,46 @@ namespace ATM.Service
         {
             while (true)
             {
-                Console.WriteLine("How much would you like to deposit?");
-                string amountValue = Console.ReadLine();
-                int amountInt = int.Parse(amountValue);
-                if (amountInt > 0)
+                try
                 {
-                    budget += amountInt;
-                    Console.WriteLine(
-                        $"You have deposit {amountInt}. The current amount is {budget} euro.\n");
-                    Receipt(budget, currentService);
-                    currentService = true;
-                }
-                else
-                {
-                    // User receives a feedback that an int value of 0 has been entered followed by a question if this was the meaning.
-                    Console.WriteLine(
-                        $"You have entered {amountInt}, which mean you that you have no desire to deposit\n\n" +
-                        $"Are you sure you don't want to deposit?");
-                    string answer = Console.ReadLine();
-                    // User decided not to proceed and the process will stop.
-                    if (answer == yes || answer == yes.ToLower())
+                    Console.WriteLine("How much would you like to deposit?");
+                    string amountValue = Console.ReadLine();
+                    int amountInt = int.Parse(amountValue);
+                    if (amountInt > 0)
                     {
-                        Console.WriteLine("Process has stopped. Thank you for coming.");
-                        Console.ReadKey();
+                        budget += amountInt;
+                        Console.WriteLine(
+                            $"You have deposit {amountInt}. The current amount is {budget} euro.\n");
+                        Receipt(budget, currentService);
                         break;
                     }
-
-                    // Allow the user a new chance to enter a value higher than 0
-                    if (answer == no || answer == no.ToLower())
+                    else
                     {
-                        continue;
+                        // User receives a feedback that an int value of 0 has been entered followed by a question if this was the meaning.
+                        Console.WriteLine(
+                            $"You have entered {amountInt}, which mean you that you have no desire to deposit\n\n" +
+                            $"Are you sure you don't want to deposit?");
+                        string answer = Console.ReadLine();
+                        // User decided not to proceed and the process will stop.
+                        if (answer == yes || answer == yes.ToLower())
+                        {
+                            Console.WriteLine("Process has stopped. Thank you for coming.");
+                            Console.ReadKey();
+                            break;
+                        }
+
+                        // Allow the user a new chance to enter a value higher than 0
+                        if (answer == no || answer == no.ToLower())
+                        {
+                            continue;
+                        }
                     }
+
+                }
+                // Catches the error and will give the user feedback why an error has been occurred.
+                catch (FormatException)
+                {
+                    Console.WriteLine("Invalid value. Please enter a valid value.");
                 }
             }
         }
