@@ -35,14 +35,15 @@ namespace ATM.Auth
         /// <param name="persons"></param>
         public static void CheckUser(Hidden[] pin, ATMFunction atm, Auth[] persons)
         {
-            Console.WriteLine("What is your number a number?");
+            Console.WriteLine($"Enter an index value betwwen 0 - {persons.Length - 1}");
             
             while (true)
             {
-                string stringIndex = Console.ReadLine();
-                int intIndex = int.Parse(stringIndex);
                 try
                 {
+                    string stringIndex = Console.ReadLine();
+                    int intIndex = int.Parse(stringIndex);
+                    
                     for (int i = 0; i < persons.Length; i++)
                     {
                         if (persons[i] == persons[intIndex])
@@ -52,6 +53,10 @@ namespace ATM.Auth
                         }
                     }
                     break;
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine($"Value must be provided with an integer type, with a value between 0 - {persons.Length - 1}");
                 }
                 catch (Exception)
                 {
