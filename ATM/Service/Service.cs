@@ -107,6 +107,7 @@ namespace ATM.Service
         /// <param name="currentService"></param>
         public void WithdrawAmount(int budget, bool currentService)
         {
+            #region
             while (!insufficient)
             {
                 // Try to run the code snippet as long no errors has been met.
@@ -161,6 +162,7 @@ namespace ATM.Service
                     Console.WriteLine("Invalid value. Please enter a valid value.");
                 }
             }
+            #endregion
         }
 
         /// <summary>
