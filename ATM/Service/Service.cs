@@ -208,7 +208,6 @@ namespace ATM.Service
                             continue;
                         }
                     }
-
                 }
                 // Catches the error and will give the user feedback why an error has been occurred.
                 catch (FormatException)
