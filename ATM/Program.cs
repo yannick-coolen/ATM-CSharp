@@ -36,7 +36,7 @@ namespace ATM
 
             foreach (Auth.Auth auth in authenticate.Values)
             {
-                authenticate.Add(auth.Id, auth);
+                authenticate.Add(auth.ID, auth);
             }
 
             Auth.Auth.CheckUser(hidden, atm, auths);
