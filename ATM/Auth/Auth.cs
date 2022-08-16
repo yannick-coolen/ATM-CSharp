@@ -21,7 +21,7 @@ namespace ATM.Auth
             this.lastname = lastname;
         }
 
-        public int Id { get { return id; } }
+        public int ID { get { return id; } }
         public string Username { get { return firstname; } }
         public string Password { get { return lastname; } }
 
