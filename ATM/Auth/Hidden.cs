@@ -11,6 +11,9 @@ namespace ATM.Auth
         private readonly string pin;
         private readonly int amount;
 
+        public string Pin { get => pin; }
+        public int Amount { get => amount; }
+
         public Hidden(string pin, int amount)
         {
             this.pin = pin;
@@ -19,12 +22,12 @@ namespace ATM.Auth
 
         public string GetPin()
         {
-            return pin;
+            return Pin;
         }
 
         public int GetAmount()
         {
-            return amount;
+            return Amount;
         }
     }
 }
