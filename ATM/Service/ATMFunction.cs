@@ -23,7 +23,6 @@ namespace ATM.Service
         /// <param name="amount"></param>
         public void ATMFunc(string pin, int amount)
         {
-            // Declared variable holds and object with arugment.
             user = new(pin, amount);
 
             Console.WriteLine("Please enter your PIN, or press q to quit.");
@@ -33,10 +32,8 @@ namespace ATM.Service
             {
                 pin = Console.ReadLine();
                 Console.WriteLine("----------------------------------------");
-                // Checks if the pincode only contains digits
                 if (pin.All(char.IsDigit))
                 {
-                    // Checks if the user has entered more than 4 digits; It's not allowed that the length of the pincode is more than 4
                     if (pin.Length != 4)
                     {
                         Console.WriteLine("Invald input. Only 4 digits are allowed.");
@@ -47,22 +44,18 @@ namespace ATM.Service
                         // Checks the amount of attempts that are left
                         if (pin != user.GetPin().ToString())
                         {
-                            // Decrease the value of attempts every time the entered pin of user is false
                             attempts--;
                             
-                            // Block the access for the user and the process will stop as well
                             if (attempts == 0)
                             {
                                 Console.WriteLine("Access denied. Your pin card has been blocked.");
                             }
                             else
                             {   
-                                // Checks if there's 1 attempt left, to set the word attemp as singular
                                 if (attempts == 1)
                                 {
                                     Console.WriteLine($"Try again, you have {attempts} attempt left.");
                                 }
-                                // Checks if there's 1 attempt left, to set the word attemp as plural
                                 else
                                 {
                                     Console.WriteLine($"Try again, you have {attempts} attempts left.");
@@ -74,7 +67,8 @@ namespace ATM.Service
                         else
                         {
                             Console.WriteLine("Welcome");
-                            /// ATM Function
+                            
+                            // Initiated object uses the ATM Method
                             service.UseService(user.GetAmount(), usingService);
                             usingService = true;
                         }
@@ -87,7 +81,6 @@ namespace ATM.Service
                     Console.ReadKey();
                     break;
                 }
-                // On this case the user didn't enter the the right value and the system will ask the user to try again 
                 else
                 {
                     Console.WriteLine("Invalid input. Only digits (0 - 9) or q key are allowed.");
